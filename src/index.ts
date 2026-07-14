@@ -1,4 +1,5 @@
 export { BluexpressClient } from "./client.js";
+export { createPudoOrderMetadata, PUDO_PRODUCT_FAMILY } from "./pudo.js";
 export { BluexpressApiError, BluexpressConfigError, BluexpressValidationError } from "./errors.js";
 export {
   geolocationRequestSchema,
@@ -12,6 +13,7 @@ export {
   pricingRequestSchema,
   pricingResponseDataSchema,
   pricingResponseSchema,
+  pudoSelectionSchema,
   updateIntegrationCredentialsRequestSchema,
   updateIntegrationCredentialsResponseSchema,
   validateIntegrationStatusRequestSchema,
@@ -32,6 +34,8 @@ export type {
   PricingRequest,
   PricingResponse,
   PricingResponseData,
+  PudoOrderMetadata,
+  PudoSelection,
   UpdateIntegrationCredentialsRequest,
   UpdateIntegrationCredentialsResponse,
   ValidateIntegrationStatusRequest,

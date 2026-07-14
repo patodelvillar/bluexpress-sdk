@@ -5,7 +5,7 @@
 [![node >=18](https://img.shields.io/badge/node-%3E%3D18-339933)](https://nodejs.org/)
 [![tests](https://img.shields.io/badge/tests-unit%20%7C%20contract%20%7C%20integration-blue)](#testing)
 
-SDK **no oficial** de Node.js/TypeScript para integrar BlueX en cualquier sistema (no dependiente de WooCommerce), construido mediante ingeniería inversa del plugin oficial **BlueX for WooCommerce** `3.1.6`.
+SDK **no oficial** de Node.js/TypeScript para integrar BlueX en cualquier sistema (no dependiente de WooCommerce), construido mediante ingeniería inversa del plugin oficial **BlueX for WooCommerce** y verificado contra `3.2.2`.
 
 ## Disclaimer
 
@@ -116,6 +116,7 @@ Header requerido en todas las llamadas:
 
 - `getPricing(...)`: cotiza envío (`pricing`) con bultos, origen/destino, servicio y valor declarado.
 - `getGeolocation(...)`: resuelve códigos geográficos para comuna (`bxgeo`), con modo PUDO opcional.
+- `createPudoOrderMetadata(...)`: normaliza la selección de un punto de retiro al formato observado en 3.2.2.
 - `validateIntegrationStatus(...)`: revisa estado de integración ecommerce.
 - `updateIntegrationCredentials(...)`: actualiza credenciales de integración (`accessToken/secretKey`).
 - `sendOrderWebhook(...)`: envía payload de orden al webhook de BlueX.
@@ -123,7 +124,7 @@ Header requerido en todas las llamadas:
 
 ## Limitaciones conocidas
 
-- Basado en contratos inferidos del plugin WooCommerce `3.1.6`.
+- Basado en contratos inferidos y verificados contra el plugin WooCommerce `3.2.2`.
 - Requiere `x-api-key` válida en el entorno target.
 - No probado exhaustivamente en producción pública (recomendado validar primero en QA).
 - No incluye adapters específicos de framework (NestJS/Express/Next wrappers).

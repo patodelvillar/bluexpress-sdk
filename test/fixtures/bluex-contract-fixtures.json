@@ -42,6 +42,11 @@
     "credentials": { "clientKey": "key", "clientSecret": "secret" },
     "accountName": "https://shop.example.com/"
   },
+  "pudoSelection": {
+    "agencyId": "AGENCY-123",
+    "agencyName": "Punto Centro",
+    "agencyAddress": "Av. Providencia 123, Providencia"
+  },
   "logWebhookRequest": {
     "error": "pricing failure",
     "order": { "id": 1234 }
