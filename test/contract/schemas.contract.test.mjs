@@ -8,6 +8,7 @@ import {
   logWebhookRequestSchema,
   pricingRequestSchema,
   pricingResponseSchema,
+  pudoSelectionSchema,
   updateIntegrationCredentialsRequestSchema,
   validateIntegrationStatusResponseSchema
 } from '../../dist/index.js';
@@ -51,4 +52,9 @@ test('contract: schema rechaza pricing sin bultos', () => {
   const invalid = { ...fixtures.pricingRequest, bultos: [] };
   const parsed = pricingRequestSchema.safeParse(invalid);
   assert.equal(parsed.success, false);
+});
+
+test('contract: selección PUDO 3.2.2 exige agencyId', () => {
+  assert.equal(pudoSelectionSchema.safeParse(fixtures.pudoSelection).success, true);
+  assert.equal(pudoSelectionSchema.safeParse({ agencyName: 'Punto Centro' }).success, false);
 });

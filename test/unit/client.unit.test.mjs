@@ -1,6 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { BluexpressClient, BluexpressValidationError } from '../../dist/index.js';
+import {
+  BluexpressClient,
+  BluexpressValidationError,
+  createPudoOrderMetadata,
+  PUDO_PRODUCT_FAMILY
+} from '../../dist/index.js';
 
 test('getPricing usa endpoint y headers esperados', async () => {
   let calledUrl = '';
@@ -76,4 +81,20 @@ test('getGeolocation cambia endpoint a /v2 cuando isPudo=true', async () => {
   await client.getGeolocation({ address: 'Providencia', regionCode: '13', isPudo: true });
 
   assert.equal(calledUrl, 'https://eplin.api.blue.cl/api/ecommerce/comunas/v1/bxgeo/v2');
+});
+
+test('createPudoOrderMetadata genera metadatos compatibles con 3.2.2', () => {
+  const metadata = createPudoOrderMetadata({
+    agencyId: 'AGENCY-123',
+    agencyName: 'Punto Centro',
+    agencyAddress: 'Av. Providencia 123'
+  });
+
+  assert.equal(PUDO_PRODUCT_FAMILY, 'PUDO');
+  assert.deepEqual(metadata, {
+    agencyId: 'AGENCY-123',
+    agencyName: 'Punto Centro',
+    agencyAddress: 'Av. Providencia 123',
+    isPudoSelected: 'pudoShipping'
+  });
 });

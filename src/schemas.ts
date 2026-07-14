@@ -67,6 +67,12 @@ export const geolocationResponseSchema = z
   })
   .passthrough();
 
+export const pudoSelectionSchema = z.object({
+  agencyId: z.string().min(1),
+  agencyName: z.string().min(1).optional(),
+  agencyAddress: z.string().min(1).optional()
+});
+
 export const validateIntegrationStatusRequestSchema = z.object({
   ecommerce: z.string().optional(),
   accountName: z.string().url().optional()

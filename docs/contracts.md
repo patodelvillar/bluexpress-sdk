@@ -1,10 +1,15 @@
-# Contratos API BlueX (fuente: plugin BlueX for WooCommerce 3.1.6)
+# Contratos API BlueX (verificados contra BlueX for WooCommerce 3.2.2)
 
 Fuente analizada:
 
 - `class-bluex-api-client.php`
 - `class-wc-correios-settings.php`
 - `class-wc-correios-webservice.php`
+- `class-wc-correios-blocks-integration.php`
+- `class-wc-correios-pudos-map.php`
+
+Los endpoints HTTP cubiertos por el SDK no cambiaron entre 3.1.6 y 3.2.2. La
+serie 3.2.x agregó principalmente comportamiento PUDO dentro de WooCommerce.
 
 ## Base URL
 
@@ -174,6 +179,20 @@ Request observado:
   "order": { "...": "payload orden" }
 }
 ```
+
+## 7) PUDO en 3.2.2
+
+El selector entrega un `agencyId` y, cuando están disponibles, el nombre y la
+dirección del punto. El plugin los persiste como `agencyId`, `agencyName`,
+`agencyAddress` e `isPudoSelected: "pudoShipping"`.
+
+Para cotizar ese despacho se usa:
+
+- geolocalización `/bxgeo/v2` con `agencyId`
+- `familiaProducto: "PUDO"` en pricing
+
+El método `bluex-pudo`, su modal, la migración de zonas y la reescritura a
+`bluex-ex` son adaptaciones de WooCommerce y no forman parte del contrato HTTP.
 
 ## Validación del SDK
 

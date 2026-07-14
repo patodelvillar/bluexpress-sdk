@@ -82,6 +82,24 @@ export interface GeolocationPickupInfo {
   [key: string]: unknown;
 }
 
+/**
+ * Selección PUDO normalizada desde el mensaje `pudo:select` del widget.
+ * El plugin 3.2.2 transforma `agency_id`/`agency_name` a estos metadatos.
+ */
+export interface PudoSelection {
+  agencyId: string;
+  agencyName?: string;
+  agencyAddress?: string;
+}
+
+/** Metadatos que el plugin 3.2.2 persiste en una orden PUDO. */
+export interface PudoOrderMetadata {
+  agencyId: string;
+  agencyName?: string;
+  agencyAddress?: string;
+  isPudoSelected: "pudoShipping";
+}
+
 export interface GeolocationResponse {
   porcentageDeExito?: string;
   regionCode?: string;
